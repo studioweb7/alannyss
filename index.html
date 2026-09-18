@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alannys Salon Spa | Beleza, Estética e Bem-Estar em São José do Rio Preto</title>
+    <meta name="description" content="Salão de beleza e spa em São José do Rio Preto. Cabelos, estética, unhas, massagens e tratamentos. Agende seu horário!">
+    <meta name="theme-color" content="#c97b84">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23c97b84%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 font-family=%22Arial%22 font-weight=%22bold%22 fill=%22white%22 text-anchor=%22middle%22>A</text></svg>">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'rose': { 50:'#fdf2f4',100:'#fce7eb',200:'#f9d0d8',300:'#f4aab8',400:'#ec7f93',500:'#e05c74',600:'#c97b84',700:'#a84d62',800:'#8a3d50',900:'#733647' },
+                        'dark': { 700:'#2d1f23',800:'#1f1518',900:'#130d0f' }
+                    },
+                    fontFamily: { 'display':['Playfair Display','serif'], 'body':['Inter','sans-serif'] },
+                    animation: { 'pulse-slow': 'pulse 4s cubic-bezier(0.4,0,0.6,1) infinite' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        *{scroll-behavior:smooth}
+        body{font-family:'Inter',sans-serif}
+        h1,h2,h3,h4{font-family:'Playfair Display',serif}
+        .reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.5,0,0,1)}
+        .reveal.active{opacity:1;transform:translateY(0)}
+        #header{transition:all .3s ease}
+        #header.scrolled{background:rgba(255,255,255,.98);box-shadow:0 4px 20px rgba(0,0,0,.08);backdrop-filter:blur(10px)}
+        .gradient-text{background:linear-gradient(135deg,#c97b84 0%,#2d1f23 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-gradient{background:linear-gradient(135deg,rgba(19,13,15,.85) 0%,rgba(168,77,98,.7) 100%)}
+        .accordion-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+        .accordion-content.open{max-height:400px}
+        .accordion-item.open .accordion-icon{transform:rotate(180deg)}
+        .accordion-icon{transition:transform .3s ease}
+        .service-card{transition:all .4s cubic-bezier(.4,0,.2,1)}
+        .service-card:hover{transform:translateY(-8px)}
+        .whatsapp-float{animation:pulse-slow 3s ease-in-out infinite}
+        ::-webkit-scrollbar{width:10px}
+        ::-webkit-scrollbar-track{background:#f1f5f9}
+        ::-webkit-scrollbar-thumb{background:#c97b84;border-radius:5px}
+        #loader{position:fixed;inset:0;background:#fff;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;transition:opacity .5s ease,visibility .5s ease}
+        #loader.hide{opacity:0;visibility:hidden}
+        .loader-ring{width:56px;height:56px;border:3px solid #fce7eb;border-top-color:#c97b84;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:16px}
+        #backTop{transition:all .3s ease;opacity:0;visibility:hidden;transform:translateY(10px)}
+        #backTop.show{opacity:1;visibility:visible;transform:translateY(0)}
+        .gallery-item{overflow:hidden;position:relative;cursor:pointer}
+        .gallery-item img{transition:transform .6s cubic-bezier(.4,0,.2,1)}
+        .gallery-item:hover img{transform:scale(1.1)}
+        .gallery-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(19,13,15,.7),transparent 60%);opacity:0;transition:opacity .3s}
+        .gallery-item:hover::after{opacity:1}
+        #cookieBanner{transform:translateY(100%);transition:transform .5s cubic-bezier(.4,0,.2,1)}
+        #cookieBanner.show{transform:translateY(0)}
+        .input-error{border-color:#ef4444!important;background:#fef2f2!important}
+        .input-ok{border-color:#c97b84!important}
+    </style>
+</head>
+<body class="font-body text-gray-700 antialiased">
+
+    <div id="loader">
+        <div class="loader-ring"></div>
+        <p class="font-display font-bold text-dark-800 tracking-wider text-sm">ALANNYS SALON SPA</p>
+    </div>
+
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 py-3 bg-white/95">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#home" class="flex items-center gap-2 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-rose-600 to-dark-800 flex items-center justify-center text-white font-bold text-lg shadow-lg group-hover:scale-105 transition">A</div>
+                <div class="leading-tight">
+                    <p class="font-display font-bold text-dark-800 text-lg">Alannys</p>
+                    <p class="text-[10px] uppercase tracking-widest text-rose-600 font-semibold">Salon Spa</p>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-7">
+                <a href="#sobre" class="text-sm font-medium text-gray-700 hover:text-rose-600 transition">Sobre</a>
+                <a href="#servicos" class="text-sm font-medium text-gray-700 hover:text-rose-600 transition">Serviços</a>
+                <a href="#galeria" class="text-sm font-medium text-gray-700 hover:text-rose-600 transition">Galeria</a>
+                <a href="#faq" class="text-sm font-medium text-gray-700 hover:text-rose-600 transition">FAQ</a>
+                <a href="#contato" class="bg-rose-600 hover:bg-rose-700 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition shadow-lg shadow-rose-600/30">Agendar</a>
+            </nav>
+
+            <button id="menu-btn" class="lg:hidden text-2xl text-dark-800 focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-100 mt-3">
+            <div class="px-4 py-4 space-y-1">
+                <a href="#sobre" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-rose-50 hover:text-rose-700 font-medium">Sobre</a>
+                <a href="#servicos" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-rose-50 hover:text-rose-700 font-medium">Serviços</a>
+                <a href="#galeria" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-rose-50 hover:text-rose-700 font-medium">Galeria</a>
+                <a href="#faq" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-rose-50 hover:text-rose-700 font-medium">FAQ</a>
+                <a href="#contato" class="block px-4 py-3 rounded-lg bg-rose-600 text-white text-center font-semibold mt-2">Agendar</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="relative min-h-screen flex items-center pt-24 pb-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80" alt="Salão" class="w-full h-full object-cover">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl">
+                <span class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 text-white text-xs font-semibold px-4 py-2 rounded-full mb-6">
+                    <span class="w-2 h-2 rounded-full bg-rose-400 animate-pulse"></span>
+                    Beleza, estética e bem-estar em São José do Rio Preto
+                </span>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-display font-extrabold text-white leading-[1.1] mb-6">
+                    Seja sua melhor <span class="text-rose-300">versão</span>.
+                </h1>
+                <p class="text-lg md:text-xl text-gray-100/90 mb-10 max-w-2xl leading-relaxed">
+                    Cabelos, estética, unhas, massagens e tratamentos de beleza em um só lugar.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://wa.me/551732258808" target="_blank" class="inline-flex items-center justify-center gap-2 bg-rose-500 hover:bg-rose-600 text-white font-semibold px-8 py-4 rounded-full transition shadow-xl">
+                        <i class="fab fa-whatsapp text-xl"></i> Agendar pelo WhatsApp
+                    </a>
+                    <a href="#servicos" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white font-semibold px-8 py-4 rounded-full transition">
+                        Conhecer serviços
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-rose-600">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-white text-center">
+                <div><p class="text-4xl md:text-5xl font-display font-extrabold">1500+</p><p class="text-sm mt-2 opacity-90">Clientes atendidas</p></div>
+                <div><p class="text-4xl md:text-5xl font-display font-extrabold">8 anos</p><p class="text-sm mt-2 opacity-90">De experiência</p></div>
+                <div><p class="text-4xl md:text-5xl font-display font-extrabold">30+</p><p class="text-sm mt-2 opacity-90">Serviços</p></div>
+                <div><p class="text-4xl md:text-5xl font-display font-extrabold">100%</p><p class="text-sm mt-2 opacity-90">Satisfação</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="py-20 md:py-28 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-rose-100 rounded-3xl -z-10"></div>
+                    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=900&q=80" alt="Sobre" class="rounded-3xl shadow-2xl w-full object-cover h-[500px]">
+                </div>
+                <div>
+                    <span class="inline-block text-xs font-bold tracking-widest text-rose-600 uppercase mb-3">Sobre o salão</span>
+                    <h2 class="text-3xl md:text-5xl font-display font-bold text-dark-800 mb-6 leading-tight">Um espaço onde a beleza é <span class="gradient-text">única</span></h2>
+                    <p class="text-gray-600 mb-5 leading-relaxed">A <strong class="text-dark-800">Alannys Salon Spa</strong> é um refúgio de beleza e bem-estar em São José do Rio Preto. Oferecemos uma experiência completa de cuidados, com profissionais especializados em cada área.</p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">Do corte ao tratamento capilar, da estética às unhas, do spa à massagem, tudo é pensado para você.</p>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-start gap-3"><div class="w-10 h-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600 flex-shrink-0"><i class="fas fa-scissors"></i></div><div><p class="font-semibold text-dark-800 text-sm">Profissionais especializados</p></div></div>
+                        <div class="flex items-start gap-3"><div class="w-10 h-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600 flex-shrink-0"><i class="fas fa-leaf"></i></div><div><p class="font-semibold text-dark-800 text-sm">Produtos de qualidade</p></div></div>
+                        <div class="flex items-start gap-3"><div class="w-10 h-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600 flex-shrink-0"><i class="fas fa-clock"></i></div><div><p class="font-semibold text-dark-800 text-sm">Horários flexíveis</p></div></div>
+                        <div class="flex items-start gap-3"><div class="w-10 h-10 rounded-lg bg-rose-100 flex items-center justify-center text-rose-600 flex-shrink-0"><i class="fas fa-heart"></i></div><div><p class="font-semibold text-dark-800 text-sm">Atendimento personalizado</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="py-20 md:py-28 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center mb-16">
+                <span class="inline-block text-xs font-bold tracking-widest text-rose-600 uppercase mb-3">Nossos serviços</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-dark-800 mb-4">Cuidado completo para você</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <article class="service-card bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl border border-gray-100">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center text-white text-2xl mb-6 shadow-lg"><i class="fas fa-cut"></i></div>
+                    <h3 class="text-2xl font-display font-bold text-dark-800 mb-3">Cabelos</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Corte, coloração, escova, progressiva e hidratação.</p>
+                    <a href="https://wa.me/551732258808" target="_blank" class="inline-flex items-center gap-2 text-rose-600 font-semibold text-sm">Agendar <i class="fas fa-arrow-right text-xs"></i></a>
+                </article>
+
+                <article class="service-card bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl border border-gray-100">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center text-white text-2xl mb-6 shadow-lg"><i class="fas fa-hand-sparkles"></i></div>
+                    <h3 class="text-2xl font-display font-bold text-dark-800 mb-3">Estética</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Limpeza de pele, sobrancelhas e depilação.</p>
+                    <a href="https://wa.me/551732258808" target="_blank" class="inline-flex items-center gap-2 text-rose-600 font-semibold text-sm">Agendar <i class="fas fa-arrow-right text-xs"></i></a>
+                </article>
+
+                <article class="service-card bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl border border-gray-100">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center text-white text-2xl mb-6 shadow-lg"><i class="fas fa-hand-sparkles"></i></div>
+                    <h3 class="text-2xl font-display font-bold text-dark-800 mb-3">Unhas</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Manicure, pedicure, alongamento em gel e nail art.</p>
+                    <a href="https://wa.me/551732258808" target="_blank" class="inline-flex items-center gap-2 text-rose-600 font-semibold text-sm">Agendar <i class="fas fa-arrow-right text-xs"></i></a>
+                </article>
+
+                <article class="service-card bg-white rounded-3xl p-8 shadow-lg hover:shadow-2xl border border-gray-100">
+                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center text-white text-2xl mb-6 shadow-lg"><i class="fas fa-spa"></i></div>
+                    <h3 class="text-2xl font-display font-bold text-dark-800 mb-3">Bem-Estar</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">Massagens relaxantes, drenagem e modeladora.</p>
+                    <a href="https://wa.me/551732258808" target="_blank" class="inline-flex items-center gap-2 text-rose-600 font-semibold text-sm">Agendar <i class="fas fa-arrow-right text-xs"></i></a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeria" class="py-20 md:py-28 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center mb-16">
+                <span class="inline-block text-xs font-bold tracking-widest text-rose-600 uppercase mb-3">Nossa estrutura</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-dark-800 mb-4">Um ambiente para o seu bem-estar</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+                <div class="gallery-item rounded-2xl col-span-2 row-span-2">
+                    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1200&q=80" alt="Salão" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80" alt="Espaço" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=80" alt="Estética" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80" alt="Spa" class="w-full h-full object-cover">
+                </div>
+                <div class="gallery-item rounded-2xl">
+                    <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=600&q=80" alt="Detalhes" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-28 bg-dark-800 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center mb-16">
+                <span class="inline-block text-xs font-bold tracking-widest text-rose-300 uppercase mb-3">Como funciona</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold mb-4">Agendar é simples</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center"><div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center text-3xl font-display font-bold mx-auto mb-6 shadow-2xl">1</div><h3 class="text-xl font-display font-bold mb-2">Entre em contato</h3><p class="text-gray-300 text-sm">Fale conosco pelo WhatsApp e escolha seu serviço.</p></div>
+                <div class="text-center"><div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center text-3xl font-display font-bold mx-auto mb-6 shadow-2xl">2</div><h3 class="text-xl font-display font-bold mb-2">Agendamos para você</h3><p class="text-gray-300 text-sm">Encontramos o melhor dia e horário.</p></div>
+                <div class="text-center"><div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-rose-500 to-rose-700 flex items-center justify-center text-3xl font-display font-bold mx-auto mb-6 shadow-2xl">3</div><h3 class="text-xl font-display font-bold mb-2">Relaxe e aproveite</h3><p class="text-gray-300 text-sm">Seja recebida com carinho e saia renovada.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-28 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center mb-16">
+                <span class="inline-block text-xs font-bold tracking-widest text-rose-600 uppercase mb-3">Depoimentos</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-dark-800 mb-4">O que nossas clientes dizem</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-3xl p-8">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-gray-700 italic mb-6">"Amei o resultado do meu cabelo! Atendimento maravilhoso."</p>
+                    <div class="flex items-center gap-3"><div class="w-11 h-11 rounded-full bg-rose-500 flex items-center justify-center text-white font-bold">MS</div><div><p class="font-semibold text-dark-800 text-sm">Mariana S.</p></div></div>
+                </div>
+                <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-3xl p-8">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-gray-700 italic mb-6">"Minhas unhas ficaram impecáveis! Capricho e atenção."</p>
+                    <div class="flex items-center gap-3"><div class="w-11 h-11 rounded-full bg-dark-700 flex items-center justify-center text-white font-bold">JP</div><div><p class="font-semibold text-dark-800 text-sm">Juliana P.</p></div></div>
+                </div>
+                <div class="bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-3xl p-8">
+                    <div class="flex text-yellow-400 mb-4 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-gray-700 italic mb-6">"A massagem foi divina! Saí renovada."</p>
+                    <div class="flex items-center gap-3"><div class="w-11 h-11 rounded-full bg-rose-700 flex items-center justify-center text-white font-bold">AL</div><div><p class="font-semibold text-dark-800 text-sm">Amanda L.</p></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-20 md:py-28 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-16">
+                <span class="inline-block text-xs font-bold tracking-widest text-rose-600 uppercase mb-3">Dúvidas frequentes</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-dark-800 mb-4">Perguntas frequentes</h2>
+            </div>
+            <div class="space-y-3">
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"><button class="w-full flex items-center justify-between p-6 text-left"><span class="font-display font-semibold text-dark-800">Como faço para agendar?</span><i class="fas fa-chevron-down text-rose-600 accordion-icon"></i></button><div class="accordion-content"><p class="px-6 pb-6 text-gray-600">Pelo WhatsApp (17) 3225-8808, telefone ou pelo formulário abaixo.</p></div></div>
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"><button class="w-full flex items-center justify-between p-6 text-left"><span class="font-display font-semibold text-dark-800">Qual o horário de funcionamento?</span><i class="fas fa-chevron-down text-rose-600 accordion-icon"></i></button><div class="accordion-content"><p class="px-6 pb-6 text-gray-600">Terça a sábado, das 08:00 às 20:00.</p></div></div>
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"><button class="w-full flex items-center justify-between p-6 text-left"><span class="font-display font-semibold text-dark-800">Quais formas de pagamento?</span><i class="fas fa-chevron-down text-rose-600 accordion-icon"></i></button><div class="accordion-content"><p class="px-6 pb-6 text-gray-600">Dinheiro, cartões de débito/crédito e Pix.</p></div></div>
+                <div class="accordion-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden"><button class="w-full flex items-center justify-between p-6 text-left"><span class="font-display font-semibold text-dark-800">Onde fica o salão?</span><i class="fas fa-chevron-down text-rose-600 accordion-icon"></i></button><div class="accordion-content"><p class="px-6 pb-6 text-gray-600">Av. Sebastião Tavares da Silva, 1081, São José do Rio Preto – SP.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-20 md:py-28 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center mb-16">
+                <span class="inline-block text-xs font-bold tracking-widest text-rose-600 uppercase mb-3">Fale conosco</span>
+                <h2 class="text-3xl md:text-5xl font-display font-bold text-dark-800 mb-4">Agende seu horário</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-5 gap-8 max-w-6xl mx-auto">
+                <div class="lg:col-span-2 space-y-4">
+                    <a href="https://wa.me/551732258808" target="_blank" class="flex items-start gap-4 p-5 bg-gradient-to-br from-rose-50 to-white border border-rose-100 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-rose-500 flex items-center justify-center text-white flex-shrink-0"><i class="fab fa-whatsapp text-xl"></i></div>
+                        <div><p class="text-xs font-semibold text-rose-600 uppercase">WhatsApp</p><p class="font-semibold text-dark-800 mt-1">(17) 3225-8808</p></div>
+                    </a>
+                    <div class="flex items-start gap-4 p-5 bg-white border border-gray-100 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center text-rose-700 flex-shrink-0"><i class="fas fa-map-marker-alt"></i></div>
+                        <div><p class="text-xs font-semibold text-rose-700 uppercase">Endereço</p><p class="font-semibold text-dark-800 mt-1 text-sm">Av. Sebastião Tavares da Silva, 1081</p><p class="text-xs text-gray-500">São José do Rio Preto – SP</p></div>
+                    </div>
+                    <div class="flex items-start gap-4 p-5 bg-white border border-gray-100 rounded-2xl">
+                        <div class="w-12 h-12 rounded-xl bg-rose-100 flex items-center justify-center text-rose-700 flex-shrink-0"><i class="fas fa-clock"></i></div>
+                        <div><p class="text-xs font-semibold text-rose-700 uppercase">Horário</p><p class="font-semibold text-dark-800 mt-1 text-sm">Terça a Sábado · 08:00 – 20:00</p></div>
+                    </div>
+                </div>
+
+                <form id="contact-form" class="lg:col-span-3 bg-gray-50 rounded-3xl p-8 border border-gray-100">
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div><label class="block text-sm font-semibold text-dark-800 mb-2">Nome *</label><input type="text" id="nome" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-rose-500 outline-none"></div>
+                        <div><label class="block text-sm font-semibold text-dark-800 mb-2">Telefone *</label><input type="tel" id="telefone" required placeholder="(17) 99999-9999" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-rose-500 outline-none"></div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-semibold text-dark-800 mb-2">Serviço *</label>
+                        <select id="servico" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-rose-500 outline-none">
+                            <option value="">Selecione</option>
+                            <option>Cabelo</option><option>Estética</option><option>Unhas</option><option>Bem-Estar</option><option>Outro</option>
+                        </select>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm font-semibold text-dark-800 mb-2">Mensagem</label>
+                        <textarea id="mensagem" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-rose-500 outline-none resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-4 rounded-xl transition shadow-lg">
+                        <i class="fab fa-whatsapp mr-2"></i> Enviar pelo WhatsApp
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative">
+        <div class="h-[450px] w-full">
+            <iframe src="https://www.google.com/maps?q=-20.8080556,-49.3469444&z=17&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Localização"></iframe>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gradient-to-br from-dark-800 to-rose-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-display font-bold mb-4">Você merece esse momento</h2>
+            <p class="text-gray-200 max-w-2xl mx-auto mb-8">Agende seu horário e presenteie-se.</p>
+            <a href="https://wa.me/551732258808" target="_blank" class="inline-flex items-center gap-2 bg-white text-dark-800 font-bold px-8 py-4 rounded-full">
+                <i class="fab fa-whatsapp text-xl text-rose-600"></i> Agendar pelo WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-dark-900 text-gray-400 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-600 to-dark-800 flex items-center justify-center text-white font-bold">A</div>
+                        <div><p class="font-display font-bold text-white">Alannys</p><p class="text-[10px] uppercase tracking-widest text-rose-400 font-semibold">Salon Spa</p></div>
+                    </div>
+                    <p class="text-sm max-w-md">Salão de beleza e spa em São José do Rio Preto.</p>
+                </div>
+                <div>
+                    <h4 class="font-display font-semibold text-white mb-4">Contato</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-start gap-2"><i class="fas fa-map-marker-alt text-rose-400 mt-1"></i><span>Av. Sebastião Tavares da Silva, 1081</span></li>
+                        <li class="flex items-center gap-2"><i class="fas fa-phone text-rose-400"></i><span>(17) 3225-8808</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-display font-semibold text-white mb-4">Redes sociais</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-rose-600 flex items-center justify-center transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-rose-600 flex items-center justify-center transition"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-6 text-center text-xs text-gray-500">
+                <p>&copy; <span id="year"></span> Alannys Salon Spa. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/551732258808" target="_blank" class="whatsapp-float fixed bottom-24 right-6 z-40 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-2xl"><i class="fab fa-whatsapp text-2xl"></i></a>
+
+    <button id="backTop" class="fixed bottom-6 right-6 z-40 w-14 h-14 bg-rose-600 hover:bg-rose-700 text-white rounded-full flex items-center justify-center shadow-2xl"><i class="fas fa-arrow-up"></i></button>
+
+    <div id="cookieBanner" class="fixed bottom-0 left-0 right-0 z-50 bg-dark-800 text-white px-4 py-4 shadow-2xl">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+            <p class="text-sm text-gray-200">🍪 Usamos cookies para melhorar sua experiência.</p>
+            <div class="flex gap-3">
+                <button id="cookieAccept" class="bg-rose-500 hover:bg-rose-600 text-white font-semibold text-sm px-6 py-2 rounded-full">Aceitar</button>
+                <button id="cookieReject" class="bg-white/10 hover:bg-white/20 text-white font-semibold text-sm px-6 py-2 rounded-full">Recusar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', () => { setTimeout(() => document.getElementById('loader').classList.add('hide'), 400); });
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        document.getElementById('menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+            document.getElementById('backTop').classList.toggle('show', window.scrollY > 500);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+
+        document.querySelectorAll('.accordion-item').forEach(item => {
+            item.querySelector('button').addEventListener('click', () => {
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.accordion-item').forEach(o => { o.classList.remove('open'); o.querySelector('.accordion-content').classList.remove('open'); });
+                if (!isOpen) { item.classList.add('open'); item.querySelector('.accordion-content').classList.add('open'); }
+            });
+        });
+
+        const telInput = document.getElementById('telefone');
+        telInput.addEventListener('input', (e) => {
+            let v = e.target.value.replace(/\D/g,'').slice(0,11);
+            if (v.length > 10) v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/, '($1) $2-$3');
+            else if (v.length > 6) v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
+            else if (v.length > 2) v = v.replace(/^(\d{2})(\d{0,5}).*/, '($1) $2');
+            e.target.value = v;
+        });
+
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value.trim();
+            const telefone = document.getElementById('telefone').value;
+            const servico = document.getElementById('servico').value;
+            const mensagem = document.getElementById('mensagem').value.trim();
+            if (!nome || !telefone || !servico) { alert('Preencha todos os campos obrigatórios!'); return; }
+            const texto = `Olá! Meu nome é *${nome}*.\n\n📞 Telefone: ${telefone}\n💅 Serviço: *${servico}*` + (mensagem ? `\n\n💬 ${mensagem}` : '') + `\n\n_Gostaria de agendar um horário na Alannys Salon Spa._`;
+            window.open(`https://wa.me/551732258808?text=${encodeURIComponent(texto)}`, '_blank');
+        });
+
+        document.getElementById('backTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+        const cookieBanner = document.getElementById('cookieBanner');
+        if (!localStorage.getItem('alannys-cookie')) setTimeout(() => cookieBanner.classList.add('show'), 1500);
+        const setCookie = (v) => { localStorage.setItem('alannys-cookie', v); cookieBanner.classList.remove('show'); };
+        document.getElementById('cookieAccept').addEventListener('click', () => setCookie('aceito'));
+        document.getElementById('cookieReject').addEventListener('click', () => setCookie('recusado'));
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('active'); observer.unobserve(entry.target); } });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
